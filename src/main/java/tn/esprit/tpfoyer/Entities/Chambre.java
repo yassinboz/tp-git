@@ -16,5 +16,5 @@ public class Chambre {
     long idChambre;
     long numeroChambre;
     @Enumerated(EnumType.STRING)
-    TypeChambre typeC;
+    TypeChambre typeChambre;
 }
