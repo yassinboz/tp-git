@@ -1,8 +1,11 @@
 package tn.esprit.tpfoyer.Entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,17 +14,17 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Chambre {
-
+public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idChambre;
-    long numeroChambre;
-    @Enumerated(EnumType.STRING)
-    TypeChambre typeChambre;
+    long idBloc;
+    String nomBloc;
+    long capaciteBloc;
     //ASSOCIATIONS
     @ManyToOne(cascade = CascadeType.ALL)
-    Bloc bloc;
-    @OneToMany()
-    Set<Reservation> reservations  ;
+    Foyer foyer;
+    @OneToMany(mappedBy = "bloc")
+    @JsonIgnore
+    @ToString.Exclude
+    Set<Chambre> Chambres = new HashSet<>();
 }

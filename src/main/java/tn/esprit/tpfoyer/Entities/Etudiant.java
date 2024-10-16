@@ -3,6 +3,7 @@ package tn.esprit.tpfoyer.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -11,17 +12,16 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Chambre {
-
+public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long idChambre;
-    long numeroChambre;
-    @Enumerated(EnumType.STRING)
-    TypeChambre typeChambre;
+    long idEtudiant;
+    String nomEt;
+    String prenomEt;
+    long cin;
+    String ecole;
+    Date dateNaissance;
     //ASSOCIATIONS
-    @ManyToOne(cascade = CascadeType.ALL)
-    Bloc bloc;
-    @OneToMany()
-    Set<Reservation> reservations  ;
+    @ManyToMany(mappedBy = "etudiants")
+    Set<Reservation> reservations;
 }
